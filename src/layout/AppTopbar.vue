@@ -1,6 +1,6 @@
 <script setup>
+import LanguageSwticher from '@/components/LanguageSwticher.vue';
 import { useLayout } from '@/layout/composables/layout';
-import AppConfigurator from './AppConfigurator.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 const { onMenuToggle, toggleDarkMode, isDarkTheme } = useLayout();
@@ -11,8 +11,8 @@ const lang = ref();
 const langItems = ref([
     {
         items: [
-            { label: 'English', icon: 'pi pi-language' },
-            { label: 'Chines', icon: 'pi pi-language' }
+            { label: 'English', icon: 'pi pi-globe' },
+            { label: 'Khmer', icon: 'pi pi-flag' }
         ]
     }
 ]);
@@ -110,11 +110,7 @@ const navigateTo = (route) => {
 
             <div class="layout-topbar-menu hidden lg:block">
                 <div class="layout-topbar-menu-content">
-                    <!-- <button type="button" class="layout-topbar-action">
-                        <i class="pi pi-calendar"></i>
-                        <span>Calendar</span>
-                    </button>
-                    -->
+                    <LanguageSwticher />
                     <button type="button" class="layout-topbar-action" @click="handleToggleLanguage" aria-haspopup="true" aria-controls="overlay_lang">
                         <i class="pi pi-language"></i>
                         <span>Language</span>

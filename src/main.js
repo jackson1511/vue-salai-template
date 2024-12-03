@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import App from './App.vue';
+import i18n from './i18n';
 import router from './router';
 
 import Aura from '@primevue/themes/aura';
@@ -23,5 +24,6 @@ app.use(PrimeVue, {
 });
 app.use(ToastService);
 app.use(ConfirmationService);
+app.use(i18n);
 
 app.mount('#app');
