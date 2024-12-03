@@ -1,8 +1,57 @@
 <script setup>
 import { useLayout } from '@/layout/composables/layout';
 import AppConfigurator from './AppConfigurator.vue';
-
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 const { onMenuToggle, toggleDarkMode, isDarkTheme } = useLayout();
+const router = useRouter();
+
+// language
+const lang = ref();
+const langItems = ref([
+    {
+        items: [
+            { label: 'English', icon: 'pi pi-language' },
+            { label: 'Chines', icon: 'pi pi-language' }
+        ]
+    }
+]);
+const handleToggleLanguage = (event) => {
+    lang.value.toggle(event);
+};
+
+// setting
+const setting = ref();
+const settingItems = ref([
+    {
+        // label: 'Settings',
+        items: [
+            {
+                label: 'Settings',
+                icon: 'pi pi-cog',
+                command: () => navigateTo('/setting/account')
+            },
+            {
+                label: 'Logout',
+                icon: 'pi pi-sign-out',
+                command: () => navigateTo('/auth/login')
+            }
+        ]
+    }
+]);
+const handleSetting = (event) => {
+    setting.value.toggle(event);
+};
+
+const handleMenuItemClick = (event) => {
+    // This will be triggered when a menu item is clicked
+    if (event.item.command) {
+        event.item.command();
+    }
+};
+const navigateTo = (route) => {
+    router.push(route); // Programmatically navigate to the specified route
+};
 </script>
 
 <template>
@@ -39,7 +88,8 @@ const { onMenuToggle, toggleDarkMode, isDarkTheme } = useLayout();
                 <button type="button" class="layout-topbar-action" @click="toggleDarkMode">
                     <i :class="['pi', { 'pi-moon': isDarkTheme, 'pi-sun': !isDarkTheme }]"></i>
                 </button>
-                <div class="relative">
+
+                <!-- <div class="relative">
                     <button
                         v-styleclass="{ selector: '@next', enterFromClass: 'hidden', enterActiveClass: 'animate-scalein', leaveToClass: 'hidden', leaveActiveClass: 'animate-fadeout', hideOnOutsideClick: true }"
                         type="button"
@@ -48,7 +98,7 @@ const { onMenuToggle, toggleDarkMode, isDarkTheme } = useLayout();
                         <i class="pi pi-palette"></i>
                     </button>
                     <AppConfigurator />
-                </div>
+                </div> -->
             </div>
 
             <button
@@ -60,18 +110,22 @@ const { onMenuToggle, toggleDarkMode, isDarkTheme } = useLayout();
 
             <div class="layout-topbar-menu hidden lg:block">
                 <div class="layout-topbar-menu-content">
-                    <button type="button" class="layout-topbar-action">
+                    <!-- <button type="button" class="layout-topbar-action">
                         <i class="pi pi-calendar"></i>
                         <span>Calendar</span>
                     </button>
-                    <button type="button" class="layout-topbar-action">
-                        <i class="pi pi-inbox"></i>
-                        <span>Messages</span>
+                    -->
+                    <button type="button" class="layout-topbar-action" @click="handleToggleLanguage" aria-haspopup="true" aria-controls="overlay_lang">
+                        <i class="pi pi-language"></i>
+                        <span>Language</span>
                     </button>
-                    <button type="button" class="layout-topbar-action">
+                    <Menu ref="lang" id="overlay_lang" :model="langItems" :popup="true" />
+
+                    <button type="button" class="layout-topbar-action" @click="handleSetting" aria-haspopup="true" aria-controls="overlay_setting">
                         <i class="pi pi-user"></i>
                         <span>Profile</span>
                     </button>
+                    <Menu ref="setting" id="overlay_setting" :model="settingItems" :popup="true" @item-click="handleMenuItemClick" />
                 </div>
             </div>
         </div>

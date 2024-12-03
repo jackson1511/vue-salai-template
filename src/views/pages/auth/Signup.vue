@@ -13,7 +13,7 @@ const checked = ref(false);
         <div class="flex flex-col items-center justify-center">
             <div style="border-radius: 10px; padding: 0.3rem">
                 <div class="w-full bg-surface-0 dark:bg-surface-900 py-10 px-8 sm:px-20" style="border-radius: 20px">
-                    <div class="text-center mb-8">
+                    <div class="text-center mb-4">
                         <svg viewBox="0 0 54 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-8 w-16 shrink-0 mx-auto">
                             <path
                                 fill-rule="evenodd"
@@ -31,32 +31,34 @@ const checked = ref(false);
                                 />
                             </g>
                         </svg>
-                        <div class="text-surface-900 dark:text-surface-0 text-3xl font-medium mb-4">Welcome to Project</div>
                         <span class="text-muted-color font-medium">Sign in to continue</span>
                     </div>
 
                     <div>
                         <form>
-                            <label for="email1" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Email</label>
-                            <InputText id="email1" type="text" placeholder="Email address" class="w-full md:w-[30rem] mb-8" v-model="email" />
+                            <!-- New Username Field -->
+                            <label for="username" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Username</label>
+                            <InputText id="username" type="text" placeholder="Enter username" class="w-full md:w-[30rem] mb-4" v-model="username" />
 
+                            <!-- New Age Field -->
+                            <label for="age" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Age</label>
+                            <InputText id="age" type="number" placeholder="Enter your age" class="w-full md:w-[30rem] mb-4" v-model="age" />
+
+                            <!-- Email -->
+                            <label for="email1" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Email</label>
+                            <InputText id="email1" type="text" placeholder="Email address" class="w-full md:w-[30rem] mb-4" v-model="email" />
+
+                            <!-- Password -->
                             <label for="password1" class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2">Password</label>
                             <Password id="password1" v-model="password" placeholder="Password" :toggleMask="true" class="mb-4" fluid :feedback="false"></Password>
 
-                            <div class="flex items-center justify-between mt-2 mb-8 gap-8">
-                                <!-- <div class="flex items-center">
-                                <Checkbox v-model="checked" id="rememberme1" binary class="mr-2"></Checkbox>
-                                <label for="rememberme1">Remember me</label>
-                            </div> -->
-                                <span class="font-medium no-underline ml-2 text-right cursor-pointer text-primary">Forgot password?</span>
-                            </div>
-                            <Button label="Sign In" class="w-full" as="router-link" to="/"></Button>
+                            <Button label="Sign Up" class="w-full" as="router-link" to="/"></Button>
                         </form>
-                        <div class="p-2 text-center">
-                            <p>
-                                Don't have an account?
-                                <span style="padding: 4px 4px; cursor: pointer; font-weight: bold">
-                                    <router-link to="/auth/signup">Sing Up </router-link>
+                        <div class="py-4 text-end">
+                            <p class="text-gray-500">
+                                Have account ?
+                                <span style="margin: 10px; cursor: pointer; font-weight: bold" class="text-black">
+                                    <router-link to="/auth/login">SingIn</router-link>
                                 </span>
                             </p>
                         </div>

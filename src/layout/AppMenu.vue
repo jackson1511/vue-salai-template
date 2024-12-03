@@ -9,6 +9,10 @@ const model = ref([
         items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' }]
     },
     {
+        label: 'Setting',
+        items: [{ label: 'Account', icon: 'pi pi-fw pi-user', to: '/setting/account' }]
+    },
+    {
         label: 'UI Components',
         items: [
             { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/uikit/formlayout' },
@@ -28,6 +32,7 @@ const model = ref([
             { label: 'Misc', icon: 'pi pi-fw pi-circle', to: '/uikit/misc' }
         ]
     },
+
     {
         label: 'Pages',
         icon: 'pi pi-fw pi-briefcase',
@@ -76,6 +81,7 @@ const model = ref([
             }
         ]
     },
+
     {
         label: 'Hierarchy',
         items: [
@@ -120,6 +126,7 @@ const model = ref([
             }
         ]
     },
+
     {
         label: 'Get Started',
         items: [
